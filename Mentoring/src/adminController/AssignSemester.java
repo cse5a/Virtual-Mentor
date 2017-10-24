@@ -49,11 +49,11 @@ public class AssignSemester extends HttpServlet {
 					break;
 			}
 			 if(i >= lastStudentId) {
-				 RequestDispatcher rsd = request.getRequestDispatcher("AdminHome.jsp");
+				 RequestDispatcher rsd = request.getRequestDispatcher("adminPanel/AssignSemester.jsp");
 				 rsd.forward(request, response);
 			 }
 			 else {
-				 RequestDispatcher rsd = request.getRequestDispatcher("AssignSemester.jsp");
+				 RequestDispatcher rsd = request.getRequestDispatcher("adminPanel/AssignSemester.jsp");
 				 rsd.forward(request, response);
 			 }
 		}

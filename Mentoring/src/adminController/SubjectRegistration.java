@@ -37,9 +37,9 @@ public class SubjectRegistration extends HttpServlet {
 			year=request.getParameter("year");
 			Status=AdminDao.subjectRegistration(department, topic1, topic2, topic3, topic4, topic5, topic6, topic7, semester, year);
 			if(Status == true)
-				response.sendRedirect("AdminHome.jsp");
+				response.sendRedirect("adminPanel/SubjectRegistration.jsp");
 			else
-				response.sendRedirect("SubjectRegistration.jsp");
+				response.sendRedirect("adminPanel/SubjectRegistration.jsp");
 		}else
 			response.sendRedirect("Login.jsp");
 	}

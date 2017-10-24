@@ -29,7 +29,7 @@ public class StudentProfile extends HttpServlet {
 			int STudentId= Integer.parseInt(request.getParameter("uid"));
 			UserInfo user_bean = AdminDao.getStudentById(STudentId);
 			request.setAttribute("user_bean", user_bean);
-			RequestDispatcher rsd=request.getRequestDispatcher("StudentProfile.jsp");
+			RequestDispatcher rsd=request.getRequestDispatcher("adminPanel/StudentProfile.jsp");
 			rsd.forward(request, response);
 		}
 		else

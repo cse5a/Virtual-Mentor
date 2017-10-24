@@ -37,7 +37,7 @@ public class StudentList extends HttpServlet {
 		if(session.getAttribute("USERAUTH") != null) {
 			List<UserInfo> list=AdminDao.studentList();
 			request.setAttribute("list", list);
-			RequestDispatcher rsd=request.getRequestDispatcher("ViewStudentList.jsp");
+			RequestDispatcher rsd=request.getRequestDispatcher("adminPanel/ViewStudentList.jsp");
 			rsd.forward(request, response);
 		}
 		else

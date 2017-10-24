@@ -47,10 +47,10 @@ public class CreateMentor extends HttpServlet {
 						break;
 				response.getWriter().println("Succsessfull");
 				}
-				RequestDispatcher rsd = request.getRequestDispatcher("AdminHome.jsp");
+				RequestDispatcher rsd = request.getRequestDispatcher("adminPanel/CreateMentor.jsp");
 				rsd.forward(request, response);
 			}else
-				response.sendRedirect("CreateMentor.jsp");
+				response.sendRedirect("adminPanel/CreateMentor.jsp");
 			
 		}
 		else 

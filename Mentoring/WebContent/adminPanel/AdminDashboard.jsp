@@ -94,7 +94,7 @@
             <li class="active"><a href="https://www.youtube.com" target="Iframe"><i class="fa fa-circle-o"></i>Welcome</a></li>
           </ul>
         </li>
-        <li><a href="Profile.jsp" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Profile</span></a></li>
+        <li><a href="adminPanel/Profile.jsp" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Profile</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Admin</span>
@@ -103,7 +103,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="AdminCreation.jsp" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Create Admin</span></a></li>
+            <li><a href="adminPanel/AdminCreation.jsp" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Create Admin</span></a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -130,9 +130,9 @@
           <ul class="treeview-menu">
             	<li><a href="Initiation_StudentCreation" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Create Student</span></a></li>
 		        <li><a href="StudentList" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Student List</span></a></li>
-		        <li><a href="CreateMentor.jsp" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Assign Mentor</span></a></li>
-		        <li><a href="SubjectRegistration.jsp" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Subject Registration</span></a></li>
-		        <li><a href="AssignSemester.jsp" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Assign Semester</span></a></li>
+		        <li><a href="Initiation_MentorCreation" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Assign Mentor</span></a></li>
+		        <li><a href="Initiation_SubjectRegistration" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Subject Registration</span></a></li>
+		        <li><a href="Initiation_SemesterAssign" target="Iframe"><i class="fa fa-circle-o text-aqua"></i> <span>Assign Semester</span></a></li>
           </ul>
         </li>
         

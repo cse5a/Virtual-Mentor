@@ -30,7 +30,7 @@ public class Initiation_StudentCreation extends HttpServlet {
 		if(session.getAttribute("USERAUTH") != null) {
 			List<UserBean> list= AdminDao.getDepartment();
 			request.setAttribute("dept_list", list);
-			RequestDispatcher rsd = request.getRequestDispatcher("StudentCreation.jsp");
+			RequestDispatcher rsd = request.getRequestDispatcher("adminPanel/StudentCreation.jsp");
 			rsd.forward(request, response);
 		}
 		else {

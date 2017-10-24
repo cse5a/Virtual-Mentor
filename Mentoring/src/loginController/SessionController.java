@@ -44,7 +44,7 @@ public class SessionController extends HttpServlet {
 			if (uId >= 100 && uId < 1000) {
 				user = AdminDao.getAdminInfoById(uId);
 				session.setAttribute("USERINFO", user);
-				rd = request.getRequestDispatcher("AdminDashboard.jsp");
+				rd = request.getRequestDispatcher("adminPanel/AdminDashboard.jsp");
 			} else if (uId >= 1000 && uId < 10000) {
 				user = AdminDao.facultyProfile(uId);
 				session.setAttribute("USERINFO", user);

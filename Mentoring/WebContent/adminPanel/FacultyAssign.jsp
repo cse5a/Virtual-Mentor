@@ -14,7 +14,7 @@ List<UserBean> subjectList = (List<UserBean>)request.getAttribute("subjectList")
 List<UserInfo> facultyList = (List<UserInfo>)request.getAttribute("facultyList");
 %>
 <body>
-<form action="FacultyAssign" method="post">
+<form action="../FacultyAssign" method="post">
 <table>
 <tbody>
 <tr>

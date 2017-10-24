@@ -54,7 +54,7 @@ public class StudentCreation extends HttpServlet {
 				out.print("Registration successfull.");
 				try {
 					TimeUnit.SECONDS.sleep(6);
-					response.sendRedirect("AdminHome.jsp");
+					//response.sendRedirect("AdminHome.jsp");
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -66,7 +66,7 @@ public class StudentCreation extends HttpServlet {
 				out.println("Registration fails");
 				try {
 					TimeUnit.SECONDS.sleep(6);
-					response.sendRedirect("AdminHome.jsp");
+					//response.sendRedirect("AdminHome.jsp");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

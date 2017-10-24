@@ -7,17 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Faculty Creation</title>
 </head>
 <%
 List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 %>
-
 <body>
 
-	<h1>Student Creation</h1>
+<h1>Faculty Creation</h1>
 
-<form action="StudentCreation" method="post">
+<form action="../FacultyCreation" method="post">
 			<table>
 			<tr>
 			<td>Name :</td>
@@ -34,10 +33,6 @@ List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 			<option value="Male">Male</option>
 			<option value="Female">Female</option>
 			</select></td>
-			</tr>
-			<tr>
-			<td>DOB :</td>
-			<td><input type="text" name="DOB"></td>
 			</tr>
 			<tr>
 			<td>Phone Number :</td>
@@ -60,30 +55,6 @@ List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 			}
 			%>
 			</select></td>
-			</tr>
-			<tr>
-			<td>Father`s Name :</td>
-			<td><input type="text" name="Father_Name"></td>
-			</tr>
-			<tr>
-			<td>Father`s Number :</td>
-			<td><input type="number" name="Father_PhoneNumber" ></td>
-			</tr>
-			<tr>
-			<td>Father`s Email : </td>
-			<td><input type="email" name="Father_email" placeholder="@email"></td>
-			</tr>
-			<tr>
-			<td>Mother`s Name :</td>
-			<td><input type="text" name="Mother_Name"></td>
-			</tr>
-			<tr>
-			<td>Mother`s Number :</td>
-			<td><input type="number" name="Mother_PhoneNumber" ></td>
-			</tr>
-			<tr>
-			<td>Mother`s Email : </td>
-			<td><input type="email" name="Mother_email" placeholder="@email"></td>
 			</tr>
 			<tr>
 			<td>Village/Street :</td>

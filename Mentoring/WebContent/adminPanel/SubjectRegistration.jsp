@@ -11,7 +11,7 @@
 		
 %>
 <body>
-<form action="SubjectRegistration" method="post">
+<form action="../SubjectRegistration" method="post">
 <table>
 <tbody>
 

@@ -36,7 +36,7 @@ public class FacultyProfile extends HttpServlet {
 			int id= Integer.parseInt(request.getParameter("uid"));
 			UserInfo user_bean = AdminDao.facultyProfile(id);
 			request.setAttribute("user_bean", user_bean);
-			RequestDispatcher rsd=request.getRequestDispatcher("FacultyProfile.jsp");
+			RequestDispatcher rsd=request.getRequestDispatcher("adminPanel/FacultyProfile.jsp");
 			rsd.forward(request, response);
 		}
 		else

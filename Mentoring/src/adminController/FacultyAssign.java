@@ -33,9 +33,9 @@ public class FacultyAssign extends HttpServlet {
 			year = request.getParameter("year");
 			Status = AdminDao.facultyAssign(subjectCode, facultyId,department, semester, year);
 			if(Status == true)
-				response.sendRedirect("AdminHome.jsp");
+				response.sendRedirect("adminPanel/FacultyAssign.jsp");
 			else
-				response.sendRedirect("FacultyAssign.jsp");
+				response.sendRedirect("adminPanelFacultyAssign.jsp");
 		}else
 			response.sendRedirect("Login.jsp");
 	}

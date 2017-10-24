@@ -38,7 +38,7 @@ public class InitiationFacultyCreation extends HttpServlet {
 		if(session.getAttribute("USERAUTH") != null) {
 			List<UserBean> list= AdminDao.getDepartment();
 			request.setAttribute("dept_list", list);
-			RequestDispatcher rsd = request.getRequestDispatcher("FacultyCreation.jsp");
+			RequestDispatcher rsd = request.getRequestDispatcher("adminPanel/FacultyCreation.jsp");
 			rsd.forward(request, response);
 		}
 		else
