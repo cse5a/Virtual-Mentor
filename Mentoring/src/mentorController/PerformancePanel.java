@@ -81,11 +81,30 @@ public class PerformancePanel extends HttpServlet {
 				Gson gson = new Gson();
 				performance = gson.toJson(semesterSubjectMarks);
 			}
-			else if(option.equals("semesterPerformance")) {
-				
-			}
 			else if(option.equals("attendance")) {
-				
+				List<MentorBean> attendance = MentorDao.getAttendance(studentId, semester);
+				List<MentorBean> updatedAttendance = new ArrayList<MentorBean>();
+				for(MentorBean bean : attendance) {
+					int totalClasses,totalAttendedClasses,attendanceInPercentage;
+					String subjectName = MentorDao.getSubNameByCode(bean.getSubjectCode());
+					totalClasses = bean.getFirstMonthTotalClass() + bean.getSecondMonthTotalClass() + bean.getThirdMonthTotalClass();
+					totalAttendedClasses = bean.getFirstMonthTotalAttended() + bean.getSecondMonthTotalAttended() + bean.getThirdMonthTotalAttended();
+					if(totalClasses == 0 && totalAttendedClasses == 0)
+						attendanceInPercentage = 0;
+					else
+						attendanceInPercentage = (totalAttendedClasses / totalClasses) * 100;
+					if(attendanceInPercentage >= 75)
+						bean.setColor("#008000");
+					else if(attendanceInPercentage < 75 && attendanceInPercentage >= 40)
+						bean.setColor("#FFA500");
+					else if(attendanceInPercentage < 40)
+						bean.setColor("#FF0000");
+					bean.setAttendanceInPercentage(attendanceInPercentage);
+					bean.setSubjectName(subjectName);
+					updatedAttendance.add(bean);
+				}
+				Gson gson = new Gson();
+				performance = gson.toJson(updatedAttendance);
 			}
 			response.getWriter().append(performance);
 		}

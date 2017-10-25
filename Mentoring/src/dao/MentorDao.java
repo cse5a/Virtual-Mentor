@@ -172,6 +172,75 @@ public class MentorDao {
 		}
 		return semesterMarks;
 	}
+	public static List<MentorBean> getAttendance(int studentId,String semester){
+		List<MentorBean> attendance = new ArrayList<MentorBean>();
+		Connection con=null;
+		PreparedStatement pst = null;
+		String sql = "SELECT FirstMonthTotalClass,FirstMonthTotalAttend,SecondMonthTotalClass,SecondMonthTotalAttend,ThirdMonthTotalClass,ThirdMonthTotalAttend FROM Mentor.ClassAttendance where StudentId = ? and Semester = ?";
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, studentId);
+			pst.setString(2,semester);
+			ResultSet rst = pst.executeQuery();
+			while(rst.next()) {
+				MentorBean bean = new MentorBean();
+				rst.getInt("FirstMonthTotalClass");
+				if (rst.wasNull())
+				{
+					bean.setFirstMonthTotalAttended(0);
+					bean.setFirstMonthTotalClass(0);
+				}
+				else
+				{
+					rst.getInt("FirstMonthTotalAttend");
+					if(rst.wasNull())
+						bean.setFirstMonthTotalAttended(0);
+					else {
+						bean.setFirstMonthTotalAttended(rst.getInt("FirstMonthTotalAttend"));
+						bean.setFirstMonthTotalClass(rst.getInt("FirstMonthTotalClass"));
+					}
+				}
+				rst.getInt("SecondMonthTotalClass");
+				if (rst.wasNull())
+				{
+					bean.setSecondMonthTotalAttended(0);
+					bean.setSecondMonthTotalClass(0);
+				}
+				else
+				{
+					rst.getInt("SecondMonthTotalAttend");
+					if(rst.wasNull())
+						bean.setSecondMonthTotalAttended(0);
+					else {
+						bean.setSecondMonthTotalAttended(rst.getInt("SecondMonthTotalAttend"));
+						bean.setSecondMonthTotalClass(rst.getInt("SecondMonthTotalClass"));
+					}
+				}
+				rst.getInt("ThirdMonthTotalClass");
+				if (rst.wasNull())
+				{
+					bean.setThirdMonthTotalAttended(0);
+					bean.setThirdMonthTotalClass(0);
+				}
+				else
+				{
+					rst.getInt("ThirdMonthTotalAttend");
+					if(rst.wasNull())
+						bean.setThirdMonthTotalAttended(0);
+					else {
+						bean.setThirdMonthTotalAttended(rst.getInt("ThirdMonthTotalAttend"));
+						bean.setThirdMonthTotalClass(rst.getInt("ThirdMonthTotalClass"));
+					}
+				}
+				attendance.add(bean);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return attendance;
+	}
 	public static String getSubNameByCode(String subCode) {
 		String subName = "";
 		Connection con;

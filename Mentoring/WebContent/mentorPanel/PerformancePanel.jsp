@@ -27,9 +27,6 @@ app.controller('myCtrl',function($scope,$http){
 		else if (performance === "semesterMarks"){
 			
 		}
-		else if (performance === "semesterPerformance"){
-			
-		}
 		else if (performance === "attendance"){
 			
 		}
@@ -62,7 +59,6 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 			<option value="internalMarks">Internal Marks</option>
 			<option value="internalPerformance">Internal Performance</option>
 			<option value="semesterMarks">Semester Marks</option>
-			<option value="semesterPerformance">Semester Performance</option>
 		</select>
 		<button type="button" ng-click="chutiya()">Get Status</button><br>
 		<p id="view">{{studentId}}</p>
