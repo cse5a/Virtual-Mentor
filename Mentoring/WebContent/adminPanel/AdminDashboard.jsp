@@ -27,7 +27,7 @@
 		UserInfo staff = (UserInfo)session.getAttribute("USERINFO");
 %>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper" style="margin: 0; height: 100%; overflow-y: hidden;">
+<div class="wrapper" style="margin: 0; height: 100%; overflow-y: hidden; ">
 
   <header class="main-header">
     <!-- Logo -->
@@ -151,7 +151,7 @@
 
     <section class="content">
     	<div style="">
-          <iframe name="Iframe" src="" style="width: 1110px;height: 540px;background-color: white;">
+          <iframe name="Iframe" src="" style="width: 1110px;height: 533px;background-color: white;">
 
       
           </iframe> 
