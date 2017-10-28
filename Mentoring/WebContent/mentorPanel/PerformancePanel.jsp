@@ -9,26 +9,30 @@
 <script type="text/javascript">
 var app = angular.module("myApp",[]);
 app.controller('myCtrl',function($scope,$http){
-	$scope.chutiya=function()
+	$scope.showPerformance=function()
 	{
+		$scope.performaceFlag=true;
+		$scope.attendanceFlag=true;
 		//This chutiya panti is invented by satya prakash nandy no professional use this type of code :) Now enjoy 100% working for extra service 500/- cash
 		var id=document.getElementById("studentId").value;
-		var option=document.getElementById("option1").value;
+		var semester=document.getElementById("semester").value;
 		var performance=document.getElementById("performance").value;
-		$http.get("../PerformancePanel?studentId="+id+"&semester="+option+"&option="+performance+"",{})
+		$http.get("../PerformancePanel?studentId="+id+"&semester="+semester+"&option="+performance+"",{})
 	.then(function(response)
 	{
-		if (performance === "internalMarks"){
-			
+		if (performance === "internalMarks")
+		{
+			$scope.performaceFlag=false;
 		}
 		else if (performance === "internalPerformance"){
-					
+			
 		}
 		else if (performance === "semesterMarks"){
 			
 		}
-		else if (performance === "attendance"){
-			
+		else if (performance === "attendance")
+		{
+			$scope.attendanceFlag=false;
 		}
 		$scope.mydata=response.data;
 	},
@@ -48,7 +52,7 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 <body ng-app="myApp" ng-controller="myCtrl">
 <form>
 		<input type="text" value=<%=studentId %> id="studentId">
-		<select ng-model="option" id="option1">
+		<select ng-model="semester" id="semester">
 			<option value="">--Select--</option>
 			<option value="FIRST">1st</option>
 			<option value="SECOND">2nd</option>
@@ -60,17 +64,32 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 			<option value="internalPerformance">Internal Performance</option>
 			<option value="semesterMarks">Semester Marks</option>
 		</select>
-		<button type="button" ng-click="chutiya()">Get Status</button><br>
+		<button type="button" ng-click="showPerformance()">Get Status</button><br>
 		<p id="view">{{studentId}}</p>
 		<p id="view1"></p>
 	</form>
 	<table>
-		<tr ng-repeat="x in mydata">
+		<tr ng-repeat="x in mydata" ng-hide="{{performaceFlag}}">
 			<td>{{x.subjectName}}</td>
 			<td>{{x.firstInternalMark}}</td>
 			<td>{{x.secondInternalMark}}</td>
 			<td>{{x.thirdInternalMark}}</td>
 		</tr>
+	</table>
+	<table>
+		<tr ng-repeat="x in mydata" ng-hide="{{attendanceFlag}}">
+			<td>{{x.subjectName}}</td>
+			<td>{{x.firstMonthTotalClass}}</td>
+			<td>{{x.secondMonthTotalClass}}</td>
+			<td>{{x.thirdMonthTotalClass}}</td>
+			<td>{{x.firstMonthTotalAttended	}}</td>
+			<td>{{x.secondMonthTotalAttended	}}</td>
+			<td>{{x.thirdMonthTotalAttended	}}</td>
+			
+		</tr>
+	</table>
+	<table>
+	
 	</table>
 </body>
 </html>

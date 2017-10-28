@@ -33,8 +33,7 @@ public class PerformancePanel extends HttpServlet {
 			int studentId = Integer.parseInt(request.getParameter("studentId"));
 			String semester = request.getParameter("semester");
 			String option = request.getParameter("option");
-			String performance = null;
-			//System.out.println(""+semester+""+option+""+studentId+"");
+			StringBuilder performance = new StringBuilder("");
 			if(option.equals("internalMarks") )
 			{
 				
@@ -49,7 +48,8 @@ public class PerformancePanel extends HttpServlet {
 					internalSubjectMarks.add(bean);
 				}
 				Gson gson = new Gson();
-				performance = gson.toJson(internalSubjectMarks);
+				performance.append(gson.toJson(internalSubjectMarks));
+				
 			}
 			else if(option.equals("internalPerformance")) {
 				List<MentorBean> internalMarks = MentorDao.getInternalMarks(studentId, semester);
@@ -67,7 +67,8 @@ public class PerformancePanel extends HttpServlet {
 				jsonBean.setJsonthirdInternalMark(thirdInternalMarks);
 				jsonBean.setJsonSubjectNames(subjectNames);
 				Gson gson = new Gson();
-				performance = gson.toJson(jsonBean);
+				performance.append(gson.toJson(jsonBean));
+				
 			}
 			else if(option.equals("semesterMarks")) {
 				List<MentorBean> semesterMarks = MentorDao.getInternalMarks(studentId, semester);
@@ -79,7 +80,7 @@ public class PerformancePanel extends HttpServlet {
 					semesterSubjectMarks.add(bean);
 				}
 				Gson gson = new Gson();
-				performance = gson.toJson(semesterSubjectMarks);
+				performance.append(gson.toJson(semesterSubjectMarks));
 			}
 			else if(option.equals("attendance")) {
 				List<MentorBean> attendance = MentorDao.getAttendance(studentId, semester);
@@ -89,10 +90,12 @@ public class PerformancePanel extends HttpServlet {
 					String subjectName = MentorDao.getSubNameByCode(bean.getSubjectCode());
 					totalClasses = bean.getFirstMonthTotalClass() + bean.getSecondMonthTotalClass() + bean.getThirdMonthTotalClass();
 					totalAttendedClasses = bean.getFirstMonthTotalAttended() + bean.getSecondMonthTotalAttended() + bean.getThirdMonthTotalAttended();
-					if(totalClasses == 0 && totalAttendedClasses == 0)
+					if(totalClasses == 0 || totalAttendedClasses == 0) {
 						attendanceInPercentage = 0;
+					}
 					else
-						attendanceInPercentage = (totalAttendedClasses / totalClasses) * 100;
+						attendanceInPercentage = (int) (((float)totalAttendedClasses / totalClasses) * 100);
+					System.out.println(totalClasses +" "+totalAttendedClasses +" "+attendanceInPercentage);
 					if(attendanceInPercentage >= 75)
 						bean.setColor("#008000");
 					else if(attendanceInPercentage < 75 && attendanceInPercentage >= 40)
@@ -104,7 +107,8 @@ public class PerformancePanel extends HttpServlet {
 					updatedAttendance.add(bean);
 				}
 				Gson gson = new Gson();
-				performance = gson.toJson(updatedAttendance);
+				performance.append(gson.toJson(updatedAttendance));
+				
 			}
 			response.getWriter().append(performance);
 		}

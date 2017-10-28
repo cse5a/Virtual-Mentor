@@ -176,7 +176,7 @@ public class MentorDao {
 		List<MentorBean> attendance = new ArrayList<MentorBean>();
 		Connection con=null;
 		PreparedStatement pst = null;
-		String sql = "SELECT FirstMonthTotalClass,FirstMonthTotalAttend,SecondMonthTotalClass,SecondMonthTotalAttend,ThirdMonthTotalClass,ThirdMonthTotalAttend FROM Mentor.ClassAttendance where StudentId = ? and Semester = ?";
+		String sql = "SELECT SubjectCode,FirstMonthTotalClass,FirstMonthTotalAttend,SecondMonthTotalClass,SecondMonthTotalAttend,ThirdMonthTotalClass,ThirdMonthTotalAttend FROM Mentor.ClassAttendance where StudentId = ? and Semester = ?";
 		try {
 			con = getConnection();
 			pst = con.prepareStatement(sql);
@@ -185,6 +185,7 @@ public class MentorDao {
 			ResultSet rst = pst.executeQuery();
 			while(rst.next()) {
 				MentorBean bean = new MentorBean();
+				bean.setSubjectCode(rst.getString("SubjectCode"));
 				rst.getInt("FirstMonthTotalClass");
 				if (rst.wasNull())
 				{

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="../AssignSemester" method="post">
+<form action="AssignSemester" method="post">
 FirsttStudentId : <input type="text" name="FirstStudentId"><br>
 LastStudentId : <input type="text" name="LastStudentId"><br>
 Department : <input type="text" name="Department"><br>

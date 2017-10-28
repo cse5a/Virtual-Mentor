@@ -17,7 +17,7 @@ List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 
 	<h1>Student Creation</h1>
 
-<form action="../StudentCreation" method="post">
+<form action="StudentCreation" method="post">
 			<table>
 			<tr>
 			<td>Name :</td>

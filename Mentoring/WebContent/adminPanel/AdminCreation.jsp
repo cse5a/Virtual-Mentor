@@ -13,7 +13,7 @@
 %>
 <body>
 <h1>Admin Creation</h1>
-<form action="../AdminCreation" method="post">
+<form action="AdminCreation" method="post">
 <table>
 <tr>
 <td>Name :</td>

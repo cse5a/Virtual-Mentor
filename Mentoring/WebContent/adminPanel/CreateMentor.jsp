@@ -12,7 +12,7 @@
 %>
 <body>
 <h2>Assign Mentor</h2>
-<form action="../CreateMentor" method="POST">
+<form action="CreateMentor" method="POST">
 <table>
 <tbody>
 <tr>
