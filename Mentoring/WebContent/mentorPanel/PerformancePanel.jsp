@@ -11,8 +11,9 @@ var app = angular.module("myApp",[]);
 app.controller('myCtrl',function($scope,$http){
 	$scope.showPerformance=function()
 	{
-		$scope.performaceFlag=true;
+		$scope.internalFlag=true;
 		$scope.attendanceFlag=true;
+		$scope.internalPerformanceFlag = true;
 		//This chutiya panti is invented by satya prakash nandy no professional use this type of code :) Now enjoy 100% working for extra service 500/- cash
 		var id=document.getElementById("studentId").value;
 		var semester=document.getElementById("semester").value;
@@ -20,12 +21,67 @@ app.controller('myCtrl',function($scope,$http){
 		$http.get("../PerformancePanel?studentId="+id+"&semester="+semester+"&option="+performance+"",{})
 	.then(function(response)
 	{
+		$scope.mydata=response.data;
+		
 		if (performance === "internalMarks")
 		{
-			$scope.performaceFlag=false;
+			$scope.internalFlag=false;
 		}
 		else if (performance === "internalPerformance"){
-			
+			$scope.internalPerformanceFlag = false;
+			var json = JSON.parse($scope.mydata);
+				new Chart(document.getElementById("mixed-chart"), {
+				    type: 'bar',
+				    data: {
+				      labels: [json.jsonSubjectNames],
+				      datasets: [{
+				          labels: [json.jsonSubjectNames],
+				          type: "line",
+				          borderColor: "#8e5ea2",
+				          data: [json.jsonfirstInternalMark],
+				          fill: false
+				        }, {
+				          labels: [json.jsonSubjectNames],
+				          type: "line",
+				          borderColor: "#3e95cd",
+				          data: [json.jsonsecondInternalMark],
+				          fill: false
+				        },
+				        {
+				          labels: [json.jsonSubjectNames],
+				          type: "line",
+				          borderColor: "black",
+				          data: [json.jsonthirdInternalMark],
+				          fill: false
+				        }, {
+				          labels: [json.jsonSubjectNames],
+				          type: "bar",
+				          backgroundColor: "rgba(0,0,0,0.2)",
+				          data: [json.jsonfirstInternalMark],
+				        }, {
+				          labels: [json.jsonSubjectNames],
+				          type: "bar",
+				          backgroundColor: "rgba(0,0,0,0.2)",
+				          backgroundColorHover: "#3e95cd",
+				          data: [json.jsonsecondInternalMark]
+				        },
+				        {
+				          labels: [json.jsonSubjectNames],
+				          type: "bar",
+				          backgroundColor: "rgba(0,0,0,0.2)",
+				          backgroundColorHover: "#3e95cd",
+				          data: [json.jsonthirdInternalMark]
+				        }
+				      ]
+				    },
+				    options: {
+				      title: {
+				        display: true,
+				        text: 'Population growth (millions): Europe & Africa'
+				      },
+				      legend: { display: false }
+				    }
+				});
 		}
 		else if (performance === "semesterMarks"){
 			
@@ -69,7 +125,7 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 		<p id="view1"></p>
 	</form>
 	<table>
-		<tr ng-repeat="x in mydata" ng-hide="{{performaceFlag}}">
+		<tr ng-repeat="x in mydata" ng-hide="{{internalFlag}}">
 			<td>{{x.subjectName}}</td>
 			<td>{{x.firstInternalMark}}</td>
 			<td>{{x.secondInternalMark}}</td>
@@ -88,8 +144,11 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 			
 		</tr>
 	</table>
-	<table>
 	
-	</table>
+	<canvas id="mixed-chart"  ng-hide="{{internalPerformanceFlag}}">
+	</canvas>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>

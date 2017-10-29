@@ -160,10 +160,8 @@ public class MentorDao {
 				if (rst.wasNull())
 					bean.setSemesterMark(0);
 				else
-				{
-					bean.setSubjectCode(rst.getString(1));
 					bean.setSemesterMark(rst.getInt(2));
-				}
+					bean.setSubjectCode(rst.getString(1));
 				semesterMarks.add(bean);	
 				}
 		} catch (Exception e) {

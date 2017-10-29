@@ -56,10 +56,22 @@ public class PerformancePanel extends HttpServlet {
 				
 				String firstInternalMarks = "",secondInternalMarks ="",thirdInternalMarks ="",subjectNames ="";
 				for(MentorBean bean : internalMarks) {
-					subjectNames = subjectNames +","+ MentorDao.getSubNameByCode(bean.getSubjectCode());
-					firstInternalMarks = firstInternalMarks +","+ bean.getFirstInternalMark();
-					secondInternalMarks = secondInternalMarks +","+ bean.getSecondInternalMark();
-					thirdInternalMarks = thirdInternalMarks +","+ bean.getThirdInternalMark();
+					if(subjectNames.equals(""))
+						subjectNames = "\""+ MentorDao.getSubNameByCode(bean.getSubjectCode()) +"\"";
+					else
+						subjectNames = subjectNames +",\""+ MentorDao.getSubNameByCode(bean.getSubjectCode()) +"\"";
+					if(firstInternalMarks.equals(""))
+						firstInternalMarks = "\""+ bean.getFirstInternalMark() +"\"";
+					else
+						firstInternalMarks = firstInternalMarks +",\""+ bean.getFirstInternalMark() +"\"";
+					if(secondInternalMarks.equals(""))
+						secondInternalMarks = "\""+ bean.getSecondInternalMark()+"\"";
+					else
+						secondInternalMarks = secondInternalMarks +",\""+ bean.getSecondInternalMark();
+					if(thirdInternalMarks.equals(""))
+						thirdInternalMarks = "\""+ bean.getThirdInternalMark() +"\"";
+					else
+						thirdInternalMarks = thirdInternalMarks +",\""+ bean.getThirdInternalMark()+"\"";
 				}
 				MentorBean jsonBean = new MentorBean();
 				jsonBean.setJsonfirstInternalMark(firstInternalMarks);
@@ -71,7 +83,7 @@ public class PerformancePanel extends HttpServlet {
 				
 			}
 			else if(option.equals("semesterMarks")) {
-				List<MentorBean> semesterMarks = MentorDao.getInternalMarks(studentId, semester);
+				List<MentorBean> semesterMarks = MentorDao.getSemesterMarks(studentId, semester);
 				List<MentorBean> semesterSubjectMarks = new ArrayList<MentorBean>();
 				for(MentorBean bean : semesterMarks) {
 					String subjectName = MentorDao.getSubNameByCode(bean.getSubjectCode());

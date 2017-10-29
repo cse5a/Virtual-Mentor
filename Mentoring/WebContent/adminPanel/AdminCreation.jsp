@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create Admin</title>
+<link rel="stylesheet" href="../Source/css/Admin_create.css">
 </head>
 
 <%	

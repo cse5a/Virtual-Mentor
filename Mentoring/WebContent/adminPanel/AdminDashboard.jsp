@@ -151,7 +151,7 @@
 
     <section class="content">
     	<div style="">
-          <iframe name="Iframe" src="" style="width: 1110px;height: 533px;background-color: white;">
+          <iframe name="Iframe" src="" style="width: 1110px;height: 533px;background-color: #e5e7ea;">
 
       
           </iframe> 

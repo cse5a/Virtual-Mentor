@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.Faculty{
+	background-color:#bcbfc4;
+	display: inline-block;
+	padding:5px 5px;
+	width:240px;
+	height:15px;
+	font-size:14px;
+}
+.Faculty_value{
+	background-color:white;
+	display: inline-block;
+	 padding:5px 5px;
+	 border:1px #bcbfc4 solid;
+	 width:240px;
+	 height:15px;
+	 font-size:14px;
+}
+
