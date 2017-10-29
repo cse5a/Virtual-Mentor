@@ -25,7 +25,7 @@ public class ShareProblems extends HttpServlet {
 		if(session.getAttribute("USERAUTH") != null) {
 			
 			RequestDispatcher rsd=request.getRequestDispatcher("studentPanel/ShareProblems.jsp");
-			rsd.forward(request, response);
+			rsd.forward(request, response); 
 		}
 		else
 			response.sendRedirect("Login.jsp");
