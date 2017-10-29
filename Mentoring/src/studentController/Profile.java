@@ -26,6 +26,7 @@ public class Profile extends HttpServlet {
 		if(session.getAttribute("USERAUTH") != null) {
 			RequestDispatcher rsd=request.getRequestDispatcher("studentPanel/Profile.jsp");
 			rsd.forward(request, response);
+			
 		}
 		else
 			response.sendRedirect("Login.jsp");
