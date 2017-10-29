@@ -13,7 +13,9 @@
 		
 %>
 <body>
+<div class="border">
 <h1>Admin Creation</h1>
+</div>
 <form action="AdminCreation" method="post">
 <table>
 <tr>
