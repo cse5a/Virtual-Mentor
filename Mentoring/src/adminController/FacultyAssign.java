@@ -23,6 +23,7 @@ public class FacultyAssign extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("USERAUTH") != null) {
+			
 			String subjectCode,department,semester,year;
 			int facultyId;
 			boolean Status = false;
@@ -33,9 +34,9 @@ public class FacultyAssign extends HttpServlet {
 			year = request.getParameter("year");
 			Status = AdminDao.facultyAssign(subjectCode, facultyId,department, semester, year);
 			if(Status == true)
-				response.sendRedirect("adminPanel/FacultyAssign.jsp");
+				response.sendRedirect("FacultyAssignInitiation");
 			else
-				response.sendRedirect("adminPanelFacultyAssign.jsp");
+				response.sendRedirect("FacultyAssignInitiation");
 		}else
 			response.sendRedirect("Login.jsp");
 	}

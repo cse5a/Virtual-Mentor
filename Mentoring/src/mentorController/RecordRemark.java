@@ -1,10 +1,8 @@
-package studentController;
-
+package mentorController;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import bean.UserInfo;
-import dao.StudentDao;
+import dao.MentorDao;
 
 /**
- * Servlet implementation class SubmitProblem
+ * Servlet implementation class RecordRemark
  */
-@WebServlet("/SubmitProblem")
-public class SubmitProblem extends HttpServlet {
+@WebServlet("/RecordRemark")
+public class RecordRemark extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -30,27 +27,29 @@ public class SubmitProblem extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session.getAttribute("USERAUTH") != null) {
-			UserInfo student = (UserInfo)session.getAttribute("USERINFO");
-			int studentId,mentorId;
-			String title,description,semester,date;
-			boolean status = false;
-			studentId = student.getId();
-			mentorId = student.getMentorId();
-			title = request.getParameter("title");
-			description = request.getParameter("description");
+			String semester,mentorRemark,parentRemark,date,guardian;
+			boolean status;
+			int mentorId = Integer.parseInt(request.getParameter("mentorId"));
+			int studentId = Integer.parseInt(request.getParameter("studentId"));
 			semester = request.getParameter("semester");
+			mentorRemark = request.getParameter("mentorRemark");
+			parentRemark = request.getParameter("parentRemark");
+			guardian = request.getParameter("Guardian");
 			Date time = new Date();
 			final DateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
 			date = timeFormat.format(time);// current date
 			// end
-			status = StudentDao.submitProblem(studentId, mentorId,title, description, semester, date);
+			status = MentorDao.recordRemarks(studentId, mentorId,guardian, mentorRemark, parentRemark, semester,date);
 			if(status == true) {
-				RequestDispatcher rsd=request.getRequestDispatcher("studentPanel/ShareProblems.jsp");
+				RequestDispatcher rsd = request.getRequestDispatcher("ContactParents?studentId="+studentId+"&error=1");
 				rsd.forward(request, response);
 			}
 			else {
-				response.sendRedirect("studentPanel/ShareProblems.jsp");
+				RequestDispatcher rsd = request.getRequestDispatcher("ContactParents?studentId="+studentId+"&error=0");
+				rsd.forward(request, response);
 			}
+			
+				
 			
 		}
 		else

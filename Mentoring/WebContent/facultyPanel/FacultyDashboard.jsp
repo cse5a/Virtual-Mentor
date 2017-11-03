@@ -73,7 +73,7 @@
             <li class="active"><a href="https://www.youtube.com" target="Iframe"><i class="fa fa-circle-o"></i>Welcome</a></li>
           </ul>
         </li>
-        <li><a href="Profile.jsp" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Profile</span></a></li>
+        <li><a href="facultyPanel/Profile.jsp" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Profile</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Faculty</span>
@@ -83,8 +83,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="SubjectListForFaculty?option=1" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Subject Marks</span></a></li>
-            <li><a href="SubjectListForFaculty?option=2" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Provide Attendance</span></a></li>
-            <li><a href="SubjectListForFaculty?option=3" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Disciplinary Marks</span></a></li>
+            <li><a href="SubjectListForFaculty?option=2" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>Provide Attendance</span></a></li>  
           </ul>
         </li>
         <li class="treeview">
@@ -95,11 +94,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          	<li><a href="StudentStatus" target="Iframe"><i class="fa fa-circle-o"></i><span>Students Status</span></a></li>
-            <li><a href="ViewStudentProblems" target="Iframe"><i class="fa fa-circle-o"></i><span>Student Problems</span></a></li>
+          	<li><a href="StudentStatus" target="Iframe"><i class="fa fa-circle-o"></i><span>Students List</span></a></li>
+            <li><a href="mentorPanel/ViewStudentProblems.jsp" target="Iframe"><i class="fa fa-circle-o"></i><span>Student Problems</span></a></li>
           </ul>
         </li>
-        
+        <!-- error = 2 for neutral status , 1 for positive and 0 negative -->
+        <li><a href="ChangePassword.jsp?error=2" target="Iframe"><i class="fa fa-circle-o text-red"></i> <span>Change Password</span></a></li>
         <li><a href="Logout" ><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
       </ul>
     </section>
@@ -112,7 +112,7 @@
 
     <section class="content">
     	<div style="">
-          <iframe name="Iframe" src="" style="width: 1110px;height: 540px;background-color: #cdd1d6;">
+          <iframe name="Iframe" src="" style="width: 1110px;height: 540px;background-color: white;">
 
       
           </iframe> 

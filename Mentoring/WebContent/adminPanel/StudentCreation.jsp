@@ -8,49 +8,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="Source/css/Student_creation.css">
 </head>
 <%
 List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 %>
 
 <body>
-
-	<h1>Student Creation</h1>
-
+<div class="border">
+<h1 class="header">Student Creation</h1>
+</div>
+<div class="border2">
 <form action="StudentCreation" method="post">
-			<table>
+			<fieldset  style="border: 1px #15305b solid;">
+			<legend>Academic Details</legend>
+			<table style="margin-left:5px;">
 			<tr>
-			<td>Name :</td>
-			<td><input type="text" name="Name"></td>
+			<td class="rowstyle">Name </td>
+			<td><input type="text" style="width:230px;height:18px;" name="Name"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="rowstyle">Password </td>
+			<td><input type="password" style="width:230px;height:18px;" name="Password"></td>
 			</tr>
 			<tr>
-			<td>Password :</td>
-			<td><input type="password" name="Password"></td>
-			</tr>
-			<tr>
-			<td>Sex :</td>
+			<td class="rowstyle">Department </td>
 			<td>
-			<select name="Gender">
-			<option value="Male">Male</option>
-			<option value="Female">Female</option>
-			</select></td>
-			</tr>
-			<tr>
-			<td>DOB :</td>
-			<td><input type="text" name="DOB"></td>
-			</tr>
-			<tr>
-			<td>Phone Number :</td>
-			<td><input type="number" name="PhoneNumber" ></td>
-			</tr>
-			<tr>
-			<td>Email : </td>
-			<td><input type="email" name="email" placeholder="@email"></td>
-			</tr>
-			<tr>
-			<td>Department :</td>
-			<td>
-			<select name="Department">
+			<select style="width:235px;height:22px;" name="Department">
 			<%
 			for(UserBean bean:dept_list)
 			{
@@ -60,55 +45,95 @@ List<UserBean> dept_list=(List<UserBean>)request.getAttribute("dept_list");
 			}
 			%>
 			</select></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="rowstyle">Sex </td>
+			<td>
+			<select style="width:235px;height:22px;" name="Gender">
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+			</select></td>
 			</tr>
 			<tr>
-			<td>Father`s Name :</td>
-			<td><input type="text" name="Father_Name"></td>
+			<td class="rowstyle">DOB :</td>
+			<td><input type="text" style="width:230px;height:18px;" name="DOB"></td>
+			</tr>
+			</table>
+			</fieldset>
+			<fieldset style="border: 1px #15305b solid;">
+			<legend>Contact Details</legend>
+			<table style="margin-left:5px;">
+			<tr>
+			<td class="rowstyle">Phone Number </td>
+			<td><input type="number" style="width:230px;height:18px;" name="PhoneNumber" ></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="rowstyle">Email  </td>
+			<td><input type="email" style="width:230px;height:18px;" name="email" placeholder="@email"></td>
+			</tr>
+			</table>
+			</fieldset>
+			<fieldset style="border: 1px #15305b solid;">
+			<legend>Parent Details</legend>
+			<table style="margin-left:5px;">
+			<tr>
+			<td class="rowtable2">Father`s Name </td>
+			<td><input type="text" style="width:165px;height:18px;" name="Father_Name"></td>
+			<td></td>
+			<td></td>
+			<td class="rowtable2">Father`s Number </td>
+			<td><input type="number" style="width:165px;height:18px;" name="Father_PhoneNumber" ></td>
+			<td></td>
+			<td></td>
+			<td class="rowtable2">Father`s Email </td>
+			<td><input type="email" style="width:165px;height:18px;" name="Father_email" placeholder="@email"></td>
 			</tr>
 			<tr>
-			<td>Father`s Number :</td>
-			<td><input type="number" name="Father_PhoneNumber" ></td>
+			<td class="rowtable2">Mother`s Name :</td>
+			<td><input type="text" style="width:165px;height:18px;" name="Mother_Name"></td>
+			<td></td>
+			<td></td>
+			<td class="rowtable2">Mother`s Number :</td>
+			<td><input type="number" style="width:165px;height:18px;" name="Mother_PhoneNumber" ></td>
+			<td></td>
+			<td></td>
+			<td class="rowtable2">Mother`s Email : </td>
+			<td><input type="email" style="width:165px;height:18px;" name="Mother_email" placeholder="@email"></td>
+			</tr>
+			</table>
+			</fieldset>
+			<fieldset  style="border: 1px #15305b solid;">
+			<legend>Address Details</legend>
+			<table style="margin-left:5px;">
+			<tr>
+			<td class="rowstyle">Village/Street </td>
+			<td><input type="text" style="width:230px;height:18px;" name="At"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="rowstyle">Post-Office </td>
+			<td><input type="text" style="width:230px;height:18px;" name="Post"></td>
 			</tr>
 			<tr>
-			<td>Father`s Email : </td>
-			<td><input type="email" name="Father_email" placeholder="@email"></td>
+			<td class="rowstyle">District </td>
+			<td><input type="text" style="width:230px;height:18px;" name="Dist"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="rowstyle">Pin</td>
+			<td><input type="text" style="width:230px;height:18px;" name="Pin" /></td>
 			</tr>
 			<tr>
-			<td>Mother`s Name :</td>
-			<td><input type="text" name="Mother_Name"></td>
+			<td class="rowstyle">State </td>
+			<td><input type="text" style="width:230px;height:18px;" name="State" /></td>
 			</tr>
-			<tr>
-			<td>Mother`s Number :</td>
-			<td><input type="number" name="Mother_PhoneNumber" ></td>
-			</tr>
-			<tr>
-			<td>Mother`s Email : </td>
-			<td><input type="email" name="Mother_email" placeholder="@email"></td>
-			</tr>
-			<tr>
-			<td>Village/Street :</td>
-			<td><input type="text" name="At"></td>
-			</tr>
-			<tr>
-			<td>Post-Office : </td>
-			<td><input type="text" name="Post"></td>
-			</tr>
-			<tr>
-			<td>District :</td>
-			<td><input type="text" name="Dist"></td>
-			</tr>
-			<tr>
-			<td>Pin :</td>
-			<td><input type="text" name="Pin" /></td>
-			</tr>
-			<tr>
-			<td>State :</td>
-			<td><input type="text" name="State" /></td>
-			</tr>
-			
-			</table><br>
-			<input type="submit" name="save" />
+			</table>
+			<div style="margin-left:400px;margin-top:10px;">
+			<input type="submit" style="width:150px;height:25px;background-color:#a2b3c4;" name="save" /></div>
+			</fieldset>
 		</form>
-
+</div>
 </body>
 </html>

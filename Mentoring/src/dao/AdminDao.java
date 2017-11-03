@@ -26,12 +26,10 @@ public class AdminDao {
 		UserBean bean= null;
 		try {
 			Connection con=getConnection();
-			
 			PreparedStatement pst=con.prepareStatement("SELECT * FROM Mentor.MasterTable where uid=? and password=MD5(?)");
 			pst.setInt(1, id);
 			pst.setString(2, pass);
 			ResultSet rs=pst.executeQuery();
-			
 			while(rs.next()) {
 				bean = new UserBean();
 				bean.setMid(rs.getInt("MID"));
@@ -41,7 +39,24 @@ public class AdminDao {
 		
 		return bean;
 	}
-		
+	public static int changePassword(int userId,String oldPassword, String newPassword) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		int flag = 0;
+		String sql = "update Mentor.MasterTable set Password=md5(?) where UId =? and Password=md5(?)";
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, newPassword);
+			pst.setInt(2, userId);
+			pst.setString(3, oldPassword);
+			flag = pst.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public static boolean AdminCreation(String name,String password,String gender,String phoneNumber,String email,String city,String state) {
 			boolean Status=false;
 			//Admin creation code

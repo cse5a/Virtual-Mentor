@@ -1,9 +1,6 @@
-package studentController;
+package loginController;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,16 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
 import bean.UserInfo;
-import dao.StudentDao;
+import dao.AdminDao;
 
 /**
- * Servlet implementation class SubmitProblem
+ * Servlet implementation class ChangePassword
  */
-@WebServlet("/SubmitProblem")
-public class SubmitProblem extends HttpServlet {
+@WebServlet("/ChangePassword")
+public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -30,27 +25,26 @@ public class SubmitProblem extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session.getAttribute("USERAUTH") != null) {
-			UserInfo student = (UserInfo)session.getAttribute("USERINFO");
-			int studentId,mentorId;
-			String title,description,semester,date;
-			boolean status = false;
-			studentId = student.getId();
-			mentorId = student.getMentorId();
-			title = request.getParameter("title");
-			description = request.getParameter("description");
-			semester = request.getParameter("semester");
-			Date time = new Date();
-			final DateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
-			date = timeFormat.format(time);// current date
-			// end
-			status = StudentDao.submitProblem(studentId, mentorId,title, description, semester, date);
-			if(status == true) {
-				RequestDispatcher rsd=request.getRequestDispatcher("studentPanel/ShareProblems.jsp");
+			String oldPassword,newPassword,confirmPassword;
+			oldPassword = request.getParameter("oldPassword");
+			newPassword = request.getParameter("newPassword");
+			confirmPassword = request.getParameter("confirmPassword");
+			int status = 0;
+			if(newPassword.equals(confirmPassword)) {
+				UserInfo userInfo = (UserInfo)request.getSession().getAttribute("USERINFO");
+				int userId = userInfo.getId();
+				status = AdminDao.changePassword(userId, oldPassword, newPassword);
+			}
+			
+			if(status == 1) {
+				RequestDispatcher rsd=request.getRequestDispatcher("ChangePassword.jsp?error=1");
 				rsd.forward(request, response);
 			}
 			else {
-				response.sendRedirect("studentPanel/ShareProblems.jsp");
+				RequestDispatcher rsd=request.getRequestDispatcher("ChangePassword.jsp?error=0");
+				rsd.forward(request, response);
 			}
+				
 			
 		}
 		else

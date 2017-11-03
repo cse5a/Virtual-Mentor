@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import bean.MentorBean;
+import bean.RemarkBean;
 import bean.StudentBean;
 import bean.UserInfo;
 
@@ -22,15 +23,16 @@ public class MentorDao {
 			}catch(Exception e) {e.printStackTrace();}
 			return con;
 		}
-	public static List<StudentBean> viewStudentProblems(int mentorId){
+	public static List<StudentBean> viewStudentProblems(int mentorId,String semester){
 		List<StudentBean> problems = new ArrayList<StudentBean>();
 		Connection con;
 		PreparedStatement pst;
-		String sql = "SELECT Id,Title,Student_Id FROM Mentor.StudentProblems where Mentor_Id = ?";
+		String sql = "SELECT Id,Title,Student_Id FROM Mentor.StudentProblems where Mentor_Id = ? and Semester=?";
 		try {
 			con = getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, mentorId);
+			pst.setString(2, semester);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
 				StudentBean bean = new StudentBean();
@@ -244,7 +246,6 @@ public class MentorDao {
 		String subName = "";
 		Connection con;
 		PreparedStatement pst;
-		//System.out.println(subCode);
 		String sql="SELECT SName FROM Mentor.Subject where SCode=?";
 		try {
 			con = getConnection();
@@ -259,9 +260,87 @@ public class MentorDao {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		//System.out.println(subCode);
-		//System.out.println("Rahul god Father");
 		return subName;
+	}
+	public static UserInfo getParentDetails(int studentId) {
+		UserInfo parentDetails = new UserInfo();
+		Connection con;
+		PreparedStatement pst;
+		String sql="SELECT Name,PhoneNumber,Email,Sex,FatherName,FNumber,FEmail,MotherName,MNumber,MEmail,District FROM Mentor.Student where SId = ?";
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, studentId);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				parentDetails.setName(rs.getString(1));
+				parentDetails.setNumber(rs.getString(2));
+				parentDetails.setEmail(rs.getString(3));
+				parentDetails.setSex(rs.getString(4));
+				parentDetails.setF_name(rs.getString(5));
+				parentDetails.setF_number(rs.getString(6));
+				parentDetails.setF_email(rs.getString(7));
+				parentDetails.setM_name(rs.getString(8));
+				parentDetails.setM_number(rs.getString(9));
+				parentDetails.setM_email(rs.getString(10));
+				parentDetails.setCity(rs.getString(11));
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return parentDetails;
+	}
+	
+	public static boolean recordRemarks(int studentId,int mentorId,String guardian, String mentorRemark,String parentRemark,String semester,String date) {
+		boolean status = false;
+		Connection con;
+		PreparedStatement pst;
+		String sql="INSERT INTO `Mentor`.`Remarks` VALUES (null,?, ?,?, ?, ?, ?,?)";
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, mentorId);
+			pst.setInt(2, studentId);
+			pst.setString(3, guardian);
+			pst.setString(4, parentRemark);
+			pst.setString(5, mentorRemark);
+			pst.setString(6, semester);
+			pst.setString(7, date);
+			pst.executeUpdate();
+			status = true;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;	
+	}
+	public static List<RemarkBean> fetchRemark(int studentId,int mentorId,String semester){
+		List<RemarkBean> fetchRemarks = new ArrayList<RemarkBean>();
+		Connection con;
+		PreparedStatement pst;
+		String sql = "SELECT Guardian,ParentRemark,MentorRemark,Date FROM Mentor.Remarks where MentorId = ? and StudentId = ? and Semester = ?";
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, mentorId);
+			pst.setInt(2, studentId);
+			pst.setString(3, semester);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				RemarkBean remark = new RemarkBean();
+				remark.setGuardian(rs.getString(1));
+				remark.setParentRemark(rs.getString(2));
+				remark.setMentorRemark(rs.getString(3));
+				remark.setDate(rs.getString(4));
+				fetchRemarks.add(remark);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return fetchRemarks;
 	}
 
 }

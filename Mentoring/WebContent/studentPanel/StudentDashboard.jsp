@@ -86,7 +86,8 @@
             <li><a href="ViewProblems" target="Iframe"><i class="fa fa-user-circle-o text-aqua"></i> <span>View Problems</span></a></li>
           </ul>
         </li>
-        
+        <!-- error = 2 for neutral status , 1 for positive and 0 negative -->
+        <li><a href="ChangePassword.jsp?error=2" target="Iframe"><i class="fa fa-circle-o text-red"></i> <span>Change Password</span></a></li>
         <li><a href="Logout" ><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
       </ul>
     </section>

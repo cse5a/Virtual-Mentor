@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+.border{
+	height:15px;
+	width:550px;
+	background:#15305b;
+	margin-left:30px;
+	margin-top:70px;
+	border:1px solid;
+    padding: 10px;
+    border-top-right-radius: 0em;
+}
+.header{
+	font-size:20px;
+	color:white;
+	margin-left:-10px;
+	margin-top:-7px;
+}
+.border2{
+	height:150px;
+	width:1030px;
+	border:1px solid #15305b;
+	margin-left:30px;
+}
+.rowstyle{
+	background-color:#a2b3c4;
+	display: inline-block;
+	padding:5px 5px;
+	width:170px;
+	height:14px;
+	font-size:14px;
+}
+
+

@@ -5,57 +5,78 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="Source/css/Subject_registration.css">
 </head>
 <%	
 	if(session.getAttribute("USERAUTH") != null){
 		
 %>
 <body>
+<div class="border">
+<p class="header"> Subject Registration</p>
+</div>
+<div class="border2">
 <form action="SubjectRegistration" method="post">
-<table>
+<table style="margin-left:20px;margin-top:20px;">
 <tbody>
-
-	<tr><td>Department Name</td>
+	<tr><td class="rowtable2">Department Name</td>
 		<td>
-			<select name="department">
+			<select style="width:184px;height:24px;" name="department">
 			<option value="CSE">CSE</option>
 			</select>
 		</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	<td class="rowtable2">Semester</td>
+		<td><input type="text" style="width:184px;height:18px;" name="semester"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	<td class="rowtable">Year</td>
+		<td><input type="text" style="width:184px;height:18px;" name="year"></td>
 	</tr>
-	<tr><td>TOPIC 1</td>
-		<td><input type="text" name="topic1"></td>
+	</tbody>
+	</table>
+	<table style="margin-top:5px;margin-left:20px;">
+	<tbody>
+	<tr><td class="rowstyle">TOPIC 1</td>
+		<td><input type="text" style="width:300px;height:24px;" name="topic1"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	<td class="rowstyle">TOPIC 2</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic2"></td>
 	</tr>
-	<tr><td>TOPIC 2</td>
-		<td><input type="text" name="topic2"></td>
+	<tr><td class="rowstyle">TOPIC 3</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic3"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	<td class="rowstyle">TOPIC 4</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic4"></td>
 	</tr>
-	<tr><td>TOPIC 3</td>
-		<td><input type="text" name="topic3"></td>
+	<tr><td class="rowstyle">TOPIC 5</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic5"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	<td class="rowstyle">TOPIC 6</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic6"></td>
 	</tr>
-	<tr><td>TOPIC 4</td>
-		<td><input type="text" name="topic4"></td>
-	</tr>
-	<tr><td>TOPIC 5</td>
-		<td><input type="text" name="topic5"></td>
-	</tr>
-	<tr><td>TOPIC 6</td>
-		<td><input type="text" name="topic6"></td>
-	</tr>
-	<tr><td>TOPIC 7</td>
-		<td><input type="text" name="topic7"></td>
-	</tr>
-	<tr><td>SEMESTER</td>
-		<td><input type="text" name="semester"></td>
-	</tr>
-	<tr><td>YEAR</td>
-		<td><input type="text" name="year"></td>
+	<tr><td class="rowstyle">TOPIC 7</td>
+		<td><input type="text" style="width:300px;height:20px;" name="topic7"></td>
 	</tr>
 		
 </tbody>
 
 </table>
-<input type="submit" value="Register">
+<div style="margin-left:750px;margin-top:5px;">
+<input type="submit" style="width:150px;height:25px;background-color:#a2b3c4;" value="Register">
+</div>
 
 </form>
+</div>
 
 </body>
 <%

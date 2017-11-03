@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+.header{
+	margin-left:10px;
+	margin-top:5px;
+	border:1px solid #415677;
+	padding:6px;
+	background:#415677;
+	width:450px;
+	color:white;
+	font-size:18px;
+	border-top-right-radius:10em;
+}
+.form1{
+	background-color:#a2b3c4;
+	display: inline-block;
+	padding:5px 5px;
+	width:150px;
+	height:14px;
+	font-size:14px;
+	margin-left:5px;
+	margin-top:10px;
+}
+.form2{
+	background-color:#a2b3c4;
+	display: inline-block;
+	padding:5px 5px;
+	width:130px;
+	height:14px;
+	font-size:14px;
+	margin-left:5px;
+	margin-top:10px;
+}

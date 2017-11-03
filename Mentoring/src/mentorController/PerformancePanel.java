@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.MentorBean;
+import bean.RemarkBean;
+import bean.UserBean;
 import dao.MentorDao;
 import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
@@ -28,13 +30,16 @@ public class PerformancePanel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("USERAUTH") != null)
-		{
+		UserBean user =(UserBean)session.getAttribute("USERAUTH");
+		if(user != null)
+		{	
+			int mentorId = user.getS_id();
 			int studentId = Integer.parseInt(request.getParameter("studentId"));
 			String semester = request.getParameter("semester");
 			String option = request.getParameter("option");
 			StringBuilder performance = new StringBuilder("");
-			if(option.equals("internalMarks") )
+			
+			if(option.equals("internalMarks") || option.equals("internalPerformance"))
 			{
 				
 				List<MentorBean> internalMarks = MentorDao.getInternalMarks(studentId, semester);
@@ -51,15 +56,20 @@ public class PerformancePanel extends HttpServlet {
 				performance.append(gson.toJson(internalSubjectMarks));
 				
 			}
-			else if(option.equals("internalPerformance")) {
+			/*else if(option.equals("internalPerformance")) {
 				List<MentorBean> internalMarks = MentorDao.getInternalMarks(studentId, semester);
 				
-				String firstInternalMarks = "",secondInternalMarks ="",thirdInternalMarks ="",subjectNames ="";
-				for(MentorBean bean : internalMarks) {
+				String firstInternalMarks = "",secondInternalMarks ="",thirdInternalMarks ="",subjectNames ="{";
+				//String subjectnames[]=new String[3];
+				int i=0;
+		
+				for(MentorBean bean : internalMarks) 
+				{
+					i++;
 					if(subjectNames.equals(""))
-						subjectNames = "\""+ MentorDao.getSubNameByCode(bean.getSubjectCode()) +"\"";
+						subjectNames=subjectNames+"\""+i+"\":\""+MentorDao.getSubNameByCode(bean.getSubjectCode())+"\"";
 					else
-						subjectNames = subjectNames +",\""+ MentorDao.getSubNameByCode(bean.getSubjectCode()) +"\"";
+						subjectNames = subjectNames+"\""+i+"\":\""+MentorDao.getSubNameByCode(bean.getSubjectCode())+"\",";
 					if(firstInternalMarks.equals(""))
 						firstInternalMarks = "\""+ bean.getFirstInternalMark() +"\"";
 					else
@@ -72,7 +82,9 @@ public class PerformancePanel extends HttpServlet {
 						thirdInternalMarks = "\""+ bean.getThirdInternalMark() +"\"";
 					else
 						thirdInternalMarks = thirdInternalMarks +",\""+ bean.getThirdInternalMark()+"\"";
+					i++;
 				}
+				subjectNames=subjectNames+"\"\":\"\"}";
 				MentorBean jsonBean = new MentorBean();
 				jsonBean.setJsonfirstInternalMark(firstInternalMarks);
 				jsonBean.setJsonsecondInternalMark(secondInternalMarks);
@@ -81,7 +93,7 @@ public class PerformancePanel extends HttpServlet {
 				Gson gson = new Gson();
 				performance.append(gson.toJson(jsonBean));
 				
-			}
+			}*/
 			else if(option.equals("semesterMarks")) {
 				List<MentorBean> semesterMarks = MentorDao.getSemesterMarks(studentId, semester);
 				List<MentorBean> semesterSubjectMarks = new ArrayList<MentorBean>();
@@ -107,7 +119,6 @@ public class PerformancePanel extends HttpServlet {
 					}
 					else
 						attendanceInPercentage = (int) (((float)totalAttendedClasses / totalClasses) * 100);
-					System.out.println(totalClasses +" "+totalAttendedClasses +" "+attendanceInPercentage);
 					if(attendanceInPercentage >= 75)
 						bean.setColor("#008000");
 					else if(attendanceInPercentage < 75 && attendanceInPercentage >= 40)
@@ -121,6 +132,13 @@ public class PerformancePanel extends HttpServlet {
 				Gson gson = new Gson();
 				performance.append(gson.toJson(updatedAttendance));
 				
+			}
+			else if(option.equals("fetchRemarks")) {
+				System.out.println("hello");
+				List<RemarkBean> fetchRemarks = MentorDao.fetchRemark(studentId, mentorId, semester); 
+				Gson gson = new Gson();
+				System.out.println(fetchRemarks);
+				performance.append(gson.toJson(fetchRemarks));
 			}
 			response.getWriter().append(performance);
 		}

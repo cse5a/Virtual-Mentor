@@ -8,19 +8,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="Source/css/Faculty_Assign.css"> 
 </head>
 <%
 List<UserBean> subjectList = (List<UserBean>)request.getAttribute("subjectList");
 List<UserInfo> facultyList = (List<UserInfo>)request.getAttribute("facultyList");
 %>
 <body>
+<div  class="border">
+<p class="header">Faculty Assign</p> 
+</div>
+<div class="border2">
 <form action="FacultyAssign" method="post">
-<table>
+<table style="margin-left:20px;margin-top:20px;">
 <tbody>
 <tr>
-	<td>Subject Name :</td>
+<td class="rowstyle">Department </td>
+<td><input type="text" style="width:165px;height:18px;" name="department"></td>
+<td></td>
+<td></td>
+<td></td>
+<td class="rowstyle">Semester </td>
+<td><input type="text" style="width:165px;height:18px;" name="semester"></td>
+<td></td>
+<td></td>
+<td class="rowstyle">Year</td>
+<td><input type="text" style="width:165px;height:18px;" name="year"></td>
+</tr>
+</tbody>
+</table>
+<table style="margin-left:20px;margin-top:5px;">
+<tbody>
+<tr>
+	<td class="rowstyle">Subject Name</td>
 	<td>
-		<select name="subjectCode">
+		<select style="width:370px;height:24px;" name="subjectCode">
 			<%
 			for(UserBean bean:subjectList)
 			{
@@ -31,11 +53,11 @@ List<UserInfo> facultyList = (List<UserInfo>)request.getAttribute("facultyList")
 			%>
 			</select>
 	</td>
-</tr>
-<tr>
-	<td>Faculty Name :</td>
+	<td></td>
+	<td></td>
+	<td class="rowstyle">Faculty Name </td>
 	<td>
-		<select name="facultyId">
+		<select style="width:310px;height:24px;" name="facultyId">
 			<%
 			for(UserInfo bean:facultyList)
 			{
@@ -47,22 +69,10 @@ List<UserInfo> facultyList = (List<UserInfo>)request.getAttribute("facultyList")
 			</select>
 	</td>
 </tr>
-<tr>
-	<td>Department :</td>
-	<td><input type="text" name="department"></td>
-</tr>
-<tr>
-	<td>Semester :</td>
-	<td><input type="text" name="semester"></td>
-</tr>
-<tr>
-	<td>Year :</td>
-	<td><input type="text" name="year"></td>
-</tr>
-
 </tbody>
 </table>
-<input type="submit" name="Assign">
+<div style="margin-left:870px;margin-top:5px;"><input type="submit" style="width:150px;height:25px;background-color:#a2b3c4;" name="Assign"></div>
 </form>
+</div>
 </body>
 </html>

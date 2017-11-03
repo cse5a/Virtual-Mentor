@@ -47,6 +47,7 @@ public class SubjectListForFaculty extends HttpServlet {
 				subName.setDepartment(bean.getDepartment());
 				subName.setSemester(bean.getSemester());
 				subName.setYear(bean.getYear());
+				subName.setSubjectCode(subCode);
 				subNameList.add(subName);
 			}
 			
