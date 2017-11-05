@@ -32,11 +32,10 @@ public class ProvideSolution extends HttpServlet {
 			solution = request.getParameter("solution");
 			status = MentorDao.giveSolutionByProblemId(problemId, solution);
 			if(status == true) {
-				RequestDispatcher rsd=request.getRequestDispatcher("ViewStudentProblems");
-				rsd.forward(request, response);
+				response.sendRedirect("mentorPanel/ViewStudentProblems.jsp");
 			}
 			else {
-				RequestDispatcher rsd=request.getRequestDispatcher("../UnSuccessfull.jsp");
+				RequestDispatcher rsd=request.getRequestDispatcher("");
 				rsd.forward(request, response);
 			}
 				

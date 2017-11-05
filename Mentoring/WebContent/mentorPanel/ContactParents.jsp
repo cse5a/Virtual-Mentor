@@ -28,6 +28,7 @@ else if(error.equals("0")){
 	<%
 }
 %>
+<div class="row">
 	<div class="col-sm-6">
 	<h3>Student Details</h3>
 	<table>
@@ -77,7 +78,7 @@ else if(error.equals("0")){
 		</tr>
 	</table>
 	</div>
-<div class="row">
+
 	<div class="col-sm-6">
 			<form action="RecordRemark" method="post">
 				<h3>Record Remark</h3>

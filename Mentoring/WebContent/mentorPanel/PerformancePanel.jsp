@@ -7,17 +7,15 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 // Angular use begin-----
 var app = angular.module("myApp",[]);
 app.controller('myCtrl',function($scope,$http){
 	$scope.showPerformance=function()
 	{
-		$scope.internalFlag=true;
-		$scope.attendanceFlag=true;
-		$scope.internalPerformanceFlag = true;
-		$scope.remarkFlag = true;
-		
 		var id=document.getElementById("studentId").value;
 		var semester=document.getElementById("semester").value;
 		var performance=document.getElementById("performance").value;
@@ -25,13 +23,17 @@ app.controller('myCtrl',function($scope,$http){
 	.then(function(response)
 	{
 		$scope.mydata=response.data;
-		
+		(function() {
+			document.getElementById("internalMark").style.display="none";
+			document.getElementById("attendance").style.display="none";
+			document.getElementById("remark").style.display="none";
+			document.getElementById("semesterMark").style.display="none";
+			document.getElementById("internalPerformance").style.display="none";
+		})();
 		if (performance === "internalMarks")
-		{
-			$scope.internalFlag=false;
-		}
+			document.getElementById("internalMark").style.display="block";
 		else if (performance === "internalPerformance"){
-			$scope.internalPerformanceFlag = false;
+			document.getElementById("internalPerformance").style.display="block";
 			var subjetNames = [];
 			var firstInternalMarks = [];
 			var secondInternalMarks = [];
@@ -49,36 +51,36 @@ app.controller('myCtrl',function($scope,$http){
 			    data: {
 			      labels: subjetNames,
 			      datasets: [{
-			          label: "Europe",
+			          label: "",
 			          type: "line",
 			          borderColor: "#8e5ea2",
 			          data: firstInternalMarks,
 			          fill: false
 			        }, {
-			          label: "Africa",
+			          label: "",
 			          type: "line",
 			          borderColor: "#3e95cd",
 			          data: secondInternalMarks,
 			          fill: false
 			        },{
-			          label: "Africa",
+			          label: "",
 			          type: "line",
-			          borderColor: "black",
+			          borderColor: "yellow",
 			          data: thirdInternalMarks,
 			          fill: false
 			        }, {
-			          label: "Europe",
+			          label: "",
 			          type: "bar",
 			          backgroundColor: "rgba(0,0,0,0.2)",
 			          data: firstInternalMarks,
 			        }, {
-			          label: "Africa",
+			          label: "",
 			          type: "bar",
 			          backgroundColor: "rgba(0,0,0,0.2)",
 			          backgroundColorHover: "#3e95cd",
 			          data: secondInternalMarks,
 			        }, {
-			          label: "Africa",
+			          label: "",
 			          type: "bar",
 			          backgroundColor: "rgba(0,0,0,0.2)",
 			          backgroundColorHover: "#3e95cd",
@@ -89,26 +91,19 @@ app.controller('myCtrl',function($scope,$http){
 			    options: {
 			      title: {
 			        display: true,
-			        text: 'Population growth (millions): Europe & Africa'
+			        text: 'Internal Performances of 3 Months'
 			      },
 			      legend: { display: false }
 			    }
 			});
-			//internal performance graph end
-
-			
+			//internal performance graph end	
 		}
-		else if (performance === "semesterMarks"){
-			
-		}
-		else if (performance === "fetchRemarks"){
-			$scope.remarkFlag = false;
-		}
+		else if (performance === "semesterMarks")
+			document.getElementById("semesterMark").style.display="block";
+		else if (performance === "fetchRemarks")
+			document.getElementById("remark").style.display="block";
 		else if (performance === "attendance")
-		{
-			$scope.attendanceFlag=false;
-		}
-		$scope.mydata=response.data;
+			document.getElementById("attendance").style.display="block";
 	},
 	function(error)
 	{
@@ -121,11 +116,13 @@ app.controller('myCtrl',function($scope,$http){
 </head>
 <%
 int studentId = Integer.parseInt(request.getParameter("uid"));
+String name = request.getParameter("name");
 %>
 
 <body ng-app="myApp" ng-controller="myCtrl">
 <form>
-		<input type="hidden" value=<%=studentId %> id="studentId">
+		Regd. No :<input type="text" value=<%=studentId %> id="studentId"  disabled>
+		Name :<input type="text" value="<%=name %>"  disabled><br>
 		Semester : 
 		<select ng-model="semester" id="semester">
 			<option value="">--Select--</option>
@@ -152,44 +149,57 @@ int studentId = Integer.parseInt(request.getParameter("uid"));
 		<p id="view">{{studentId}}</p>
 		<p id="view1"></p>
 	</form>
-	<table >
-		<tr ng-hide="{{internalFlag}}">
-			<td>subjectName</td>
-			<td>FirstInternalMark</td>
-			<td>SecondInternalMark</td>
-			<td>ThirdInternalMark</td>
+	<div id="internalMark" style="display:none;">
+		<table >
+		<tr >
+			<th>subjectName</th>
+			<th>FirstInternalMark</th>
+			<th>SecondInternalMark</th>
+			<th>ThirdInternalMark</th>
 		</tr>
-		<tr ng-repeat="x in mydata" ng-hide="{{internalFlag}}">
+		<tr ng-repeat="x in mydata">
 			<td>{{x.subjectName}}</td>
 			<td>{{x.firstInternalMark}}</td>
 			<td>{{x.secondInternalMark}}</td>
 			<td>{{x.thirdInternalMark}}</td>
 		</tr>
 	</table>
-	<table>
-		<tr ng-repeat="x in mydata" ng-hide="{{attendanceFlag}}">
-			<td>{{x.subjectName}}</td>
-			<td>{{x.firstMonthTotalClass}}</td>
-			<td>{{x.secondMonthTotalClass}}</td>
-			<td>{{x.thirdMonthTotalClass}}</td>
-			<td>{{x.firstMonthTotalAttended	}}</td>
-			<td>{{x.secondMonthTotalAttended	}}</td>
-			<td>{{x.thirdMonthTotalAttended	}}</td>
+	</div>
+	<div id="attendance" style="display:none;">
+		<table>
+		<tr ng-repeat="x in mydata">
+			<td style="width:400px;">
+				<div class="progress">
+				    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{x.attendanceInPercentage}}%;background-color:{{x.color}}">
+				      {{x.attendanceInPercentage}}%
+				    </div>
+			    </div>
+		    </td>
+		   	<td>{{x.subjectName}}</td>
 		</tr>
 	</table>
-	<table>
-		<tr ng-repeat="x in mydata" ng-hide="{{remarkFlag}}">
+	</div>
+	<div id="remark" style="display:none;">
+		<table>
+		<tr ng-repeat="x in mydata">
 			<td>{{x.guardian}}</td>
 			<td>{{x.mentorRemark}}</td>
 			<td>{{x.parentRemark}}</td>
 			<td>{{x.date}}</td>
 		</tr>
 	</table>
-	
-	<canvas id="mixed-chart" ng-hide="{{internalPerformanceFlag}}">
-	</canvas>
-	<script type="text/javascript">
-	
-	</script>
+	</div>
+	<div id="semesterMark" style="display:none;">
+		<table>
+		<tr ng-repeat="x in mydata">
+			<td>{{x.subjectName}}</td>
+			<td>{{x.semesterMark}}</td>
+		</tr>
+	</table>
+	</div>
+	<div id="internalPerformance" style="display:none;">
+		<canvas id="mixed-chart">
+		</canvas>
+	</div>
 </body>
 </html>

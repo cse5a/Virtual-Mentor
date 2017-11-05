@@ -27,7 +27,7 @@ for(UserInfo u_info : list){
 	
 	<tr>
 		<td><a href="#"><%=u_info.getId() %></a></td>
-		<td><a href="mentorPanel/PerformancePanel.jsp?uid=<%=u_info.getId() %>"><%=u_info.getName() %></a></td>
+		<td><a href="mentorPanel/PerformancePanel.jsp?uid=<%=u_info.getId()%>&name=<%=u_info.getName() %>"><%=u_info.getName() %></a></td>
 	
 	</tr>
 

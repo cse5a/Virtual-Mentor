@@ -65,6 +65,7 @@ app.controller('myCtrl',function($scope,$http){
 		<tr class='clickable-row' data-href='ProblemDetails' ng-repeat="x in mydata" >
 			<td>{{x.studentId}}</td>
 			<td ><a href="../ProblemDetails?Id={{x.problemId}}">{{x.title}}</a></td>
+			<td style="color : {{x.color}};">{{x.solution}}</td>
 		</tr>
 		
 	</table>

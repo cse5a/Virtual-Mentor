@@ -17,8 +17,6 @@ public class StudentDao {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Mentor?autoReconnect=true&useSSL=false","root","root");
-				
-				
 			}catch(Exception e) {e.printStackTrace();}
 			return con;
 		}

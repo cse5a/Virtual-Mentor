@@ -2,7 +2,7 @@ package bean;
 
 public class StudentBean {
 	private int problemId,studentId;
-	private String title,description,solution,semester,date,studentName;
+	private String title,description,solution,semester,date,studentName,color;
 	public int getProblemId() {
 		return problemId;
 	}
@@ -50,6 +50,12 @@ public class StudentBean {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 		
 }

@@ -1,7 +1,7 @@
 <%@page import="bean.StudentBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,12 +57,12 @@ if(problemDetail.getSolution() == null){
 	%>
 	<tr>
 	<td>Solution :</td>
-	<td><%= problemDetail.getSolution() %></td>
+	<td style="color : green;"><%= problemDetail.getSolution() %></td>
 	</tr><tr></tr><tr></tr>
 	<tr>
 	<td>Update Solution :</td>
 	<td>
-	<textarea rows="5" cols="60" form="myForm" name="solution">Give the solution ....</textarea>
+	<textarea rows="5" cols="60" form="myForm" name="solution">Update the solution ....</textarea>
 	</td>
 	</tr>
 	<%

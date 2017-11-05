@@ -49,7 +49,7 @@ public class FacultyDao {
 		UserBean subName = new UserBean();
 		Connection con;
 		PreparedStatement pst;
-		String sql="SELECT SName FROM Mentor.Subject where SCode=?";
+		String sql="SELECT SName,SCode FROM Mentor.Subject where SCode=?";
 		try {
 			con = getConnection();
 			pst = con.prepareStatement(sql);

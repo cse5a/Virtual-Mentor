@@ -27,7 +27,7 @@ public class MentorDao {
 		List<StudentBean> problems = new ArrayList<StudentBean>();
 		Connection con;
 		PreparedStatement pst;
-		String sql = "SELECT Id,Title,Student_Id FROM Mentor.StudentProblems where Mentor_Id = ? and Semester=?";
+		String sql = "SELECT Id,Title,Student_Id,Mentor_Solution FROM Mentor.StudentProblems where Mentor_Id = ? and Semester=?";
 		try {
 			con = getConnection();
 			pst = con.prepareStatement(sql);
@@ -39,6 +39,16 @@ public class MentorDao {
 				bean.setProblemId(rs.getInt("Id"));
 				bean.setTitle(rs.getString("Title"));
 				bean.setStudentId(rs.getInt("Student_Id"));
+				rs.getString("Mentor_Solution");
+				if(rs.wasNull()) {
+					bean.setSolution("UNSOLVED");
+					bean.setColor("red");
+				}
+					
+				else {
+					bean.setSolution("SOLVED");
+					bean.setColor("green");
+				}
 				problems.add(bean);
 			}
 		}catch (Exception e) {

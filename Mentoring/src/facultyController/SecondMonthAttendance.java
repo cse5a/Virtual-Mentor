@@ -52,8 +52,8 @@ public class SecondMonthAttendance extends HttpServlet {
 			List<FacultyBean> IdList = FacultyDao.getIdFromAttendanceTable(StudentIds, SubjectCode, Department, Semester, Year);
 			count=0;
 			for(FacultyBean bean:IdList) {
-				DatabaseIds[count] = bean.getId();
-				count++;
+				System.out.println(count);
+				DatabaseIds[count++] = bean.getId();
 			}
 			Status = FacultyDao.secondMonthAttendanceSubmission(DatabaseIds, StudentAttendance, totalClasses);
 			if(Status == true)

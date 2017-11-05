@@ -8,9 +8,6 @@ public class MentorBean {
 	firstMonthTotalAttended,secondMonthTotalAttended,thirdMonthTotalAttended,
 	attendanceInPercentage;
 	private String color;
-	// below json named variable are storing a string of multiple values for graph
-	private String jsonSubjectNames,jsonfirstInternalMark,jsonsecondInternalMark,jsonthirdInternalMark;
-	
 
 	public String getSubjectCode() {
 		return subjectCode;
@@ -59,38 +56,6 @@ public class MentorBean {
 
 	public void setSemesterMark(int semesterMark) {
 		this.semesterMark = semesterMark;
-	}
-
-	public String getJsonSubjectNames() {
-		return jsonSubjectNames;
-	}
-
-	public void setJsonSubjectNames(String jsonSubjectNames) {
-		this.jsonSubjectNames = jsonSubjectNames;
-	}
-
-	public String getJsonfirstInternalMark() {
-		return jsonfirstInternalMark;
-	}
-
-	public void setJsonfirstInternalMark(String jsonfirstInternalMark) {
-		this.jsonfirstInternalMark = jsonfirstInternalMark;
-	}
-
-	public String getJsonsecondInternalMark() {
-		return jsonsecondInternalMark;
-	}
-
-	public void setJsonsecondInternalMark(String jsonsecondInternalMark) {
-		this.jsonsecondInternalMark = jsonsecondInternalMark;
-	}
-
-	public String getJsonthirdInternalMark() {
-		return jsonthirdInternalMark;
-	}
-
-	public void setJsonthirdInternalMark(String jsonthirdInternalMark) {
-		this.jsonthirdInternalMark = jsonthirdInternalMark;
 	}
 
 	public int getFirstMonthTotalClass() {
